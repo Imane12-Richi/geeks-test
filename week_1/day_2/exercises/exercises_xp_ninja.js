@@ -21,6 +21,7 @@ function capitalize(str) {
 }
 
 
+
 // ===== Exercise 3
 
 // ===== Exercise 4
