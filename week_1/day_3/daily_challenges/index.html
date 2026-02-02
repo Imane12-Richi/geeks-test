@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Challenge: Mad Libs</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+        }
+
+        label {
+            display: inline-block;
+            width: 140px;
+        }
+
+        input {
+            margin-bottom: 10px;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Mad Libs</h1>
+
+    <form id="libform">
+        <label for="noun">Noun:</label>
+        <input type="text" id="noun"><br>
+
+        <label for="adjective">Adjective:</label>
+        <input type="text" id="adjective"><br>
+
+        <label for="person">Someone's Name:</label>
+        <input type="text" id="person"><br>
+
+        <label for="verb">Verb:</label>
+        <input type="text" id="verb"><br>
+
+        <label for="place">A place:</label>
+        <input type="text" id="place"><br>
+
+        <button id="lib-button">Lib it!</button>
+        <button type="button" id="shuffle">Shuffle story</button>
+    </form>
+
+    <p>
+        Generated story:
+        <span id="story"></span>
+    </p>
+
+    <script>
+        const form = document.getElementById("libform");
+        const storySpan = document.getElementById("story");
+
+        const nounInput = document.getElementById("noun");
+        const adjectiveInput = document.getElementById("adjective");
+        const personInput = document.getElementById("person");
+        const verbInput = document.getElementById("verb");
+        const placeInput = document.getElementById("place");
+
+       
+        const stories = [
+            (n, a, p, v, pl) =>
+                `One day, ${p} found a ${a} ${n} and decided to ${v} it in ${pl}.`,
+            (n, a, p, v, pl) =>
+                `In ${pl}, a ${a} ${n} helped ${p} to ${v} all day long.`,
+            (n, a, p, v, pl) =>
+                `${p} was ${v} with a ${a} ${n} while visiting ${pl}.`
+        ];
+
+        let currentValues = null;
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const noun = nounInput.value.trim();
+            const adjective = adjectiveInput.value.trim();
+            const person = personInput.value.trim();
+            const verb = verbInput.value.trim();
+            const place = placeInput.value.trim();
+
+            if (!noun || !adjective || !person || !verb || !place) {
+                alert("Please fill in all fields");
+                return;
+            }
+
+            currentValues = { noun, adjective, person, verb, place };
+            generateStory();
+        });
+
+        function generateStory() {
+            if (!currentValues) return;
+
+            const randomIndex = Math.floor(Math.random() * stories.length);
+            const story = stories[randomIndex](
+                currentValues.noun,
+                currentValues.adjective,
+                currentValues.person,
+                currentValues.verb,
+                currentValues.place
+            );
+
+            storySpan.textContent = story;
+        }
+
+        document.getElementById("shuffle").addEventListener("click", generateStory);
+    </script>
+
+</body>
+</html>
