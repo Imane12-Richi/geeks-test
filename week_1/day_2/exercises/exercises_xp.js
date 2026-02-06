@@ -1,258 +1,196 @@
-// ===== Exercise 1
+//Exercise 1
 
-function displayNumbersDivisible() {
-  let sum = 0;
+function displayNumbersDivisible(divisor = 23) {
+    let sum = 0;
 
-  for (let i = 0; i <= 500; i++) {
-    if (i % 23 === 0) {
-      console.log(i);
-      sum += i;
-    }
-  }
-
-  console.log("Sum :", sum);
-}
-
-displayNumbersDivisible();
-
-
-function displayNumbersDivisible(divisor) {
-  let sum = 0;
     for (let i = 0; i <= 500; i++) {
-    if (i % 3 === 0) {
-      console.log(i);
-      sum += i;
+        if (i % divisor === 0) {
+            console.log(i);
+            sum += i;
+        }
     }
-  }
 
-  console.log("Sum :", sum);
+    console.log("Sum :", sum);
 }
 
 displayNumbersDivisible();
+displayNumbersDivisible(3);
+displayNumbersDivisible(45);
 
-// // ===== Exercise 2
+// Exercice 2 
+
 const stock = { 
-    "banana": 6, 
-    "apple": 0,
-    "pear": 12,
-    "orange": 32,
-    "blueberry":1
-}  
+    banana: 6, 
+    apple: 0,
+    pear: 12,
+    orange: 32,
+    blueberry: 1
+};
 
 const prices = {    
-    "banana": 4, 
-    "apple": 2, 
-    "pear": 1,
-    "orange": 1.5,
-    "blueberry":10
-} 
-
+    banana: 4, 
+    apple: 2, 
+    pear: 1,
+    orange: 1.5,
+    blueberry: 10
+};
 
 const shoppingList = ["banana", "orange", "apple"];
+
 function myBill() {
-   let total = 0;  
-    for (let i = 0; i < shoppingList.length; i++) {
-    let item = shoppingList[i];
-    if (item in stock && stock[item] > 0) {
-      total += prices[item];
+    let total = 0;
+
+    for (let item of shoppingList) {
+        if (stock[item] > 0) {
+            total += prices[item];
+            stock[item]--;
+        }
     }
-  }
 
-  return total;
+    return total;
 }
-console.log(stock)
-// console.log(myBill());
-      
 
+console.log(myBill());
 
-
-// ===== Exercise 3
+//exercice 3 
 
 function changeEnough(itemPrice, amountOfChange) {
-  // Renommage des pièces pour que ce soit plus simple
-  let [quart, dix, cinq, unCent] = amountOfChange;
+    const values = [0.25, 0.10, 0.05, 0.01];
+    let total = 0;
 
-  // Calcul du total en dollars
-  let total = quart * 0.25 + dix * 0.10 + cinq * 0.05 + unCent * 0.01;
+    for (let i = 0; i < amountOfChange.length; i++) {
+        total += amountOfChange[i] * values[i];
+    }
 
-  // Vérifie si le total suffit pour acheter l'article
-  return total >= itemPrice;
+    return total >= itemPrice;
 }
 
-// Exemples d'utilisation
-console.log(changeEnough(4.25, [4, 3, 2, 5]));   // true
-console.log(changeEnough(14.11, [2, 100, 0, 50])); // false
-console.log(changeEnough(0.75, [3, 0, 0, 0]));     // true
+console.log(changeEnough(4.25, [25, 20, 5, 0]));
+console.log(changeEnough(14.11, [2, 100, 0, 0]));
+console.log(changeEnough(0.75, [0, 0, 20, 5]));
 
+//exercice 4
 
-function changeEnough(itemPrice, amountOfChange) {
-  let [quarters, dimes, nickels, pennies] = amountOfChange;
-  let total = quarters * 0.25 + dimes * 0.10 + nickels * 0.05 + pennies * 0.01;
-
-  return total >= itemPrice;
+function hotelCost(nights) {
+    return nights * 140;
 }
 
-console.log(changeEnough(4.25, [25, 20, 5, 0])); // true
+function planeRideCost(destination) {
+    if (destination === "London") return 183;
+    if (destination === "Paris") return 220;
+    return 300;
+}
+
+function rentalCarCost(days) {
+    let cost = days * 40;
+    if (days > 10) cost *= 0.95;
+    return cost;
+}
+
+function totalVacationCost() {
+    let nights;
+    while (!nights || isNaN(nights)) {
+        nights = prompt("How many nights?");
+    }
+
+    let destination;
+    while (!destination || typeof destination !== "string") {
+        destination = prompt("Destination?");
+    }
+
+    let days;
+    while (!days || isNaN(days)) {
+        days = prompt("How many days for car?");
+    }
+
+    const hotel = hotelCost(Number(nights));
+    const plane = planeRideCost(destination);
+    const car = rentalCarCost(Number(days));
+
+    return hotel + plane + car;
+}
+
+console.log(totalVacationCost());
 
 
-// ===== Exercise 4
-// 1. Ajouter un fond bleu clair et du padding au <div>
-const div = document.querySelector("div");
-div.style.backgroundColor = "lightblue";
-div.style.padding = "20px";
+//exercice 5 
 
-// 2. Ne pas afficher le <li> qui contient "Dan"
-const lis = document.querySelectorAll("ul li");
-lis[1].style.display = "none"; // Dan est le dernier li du premier ul
-
-// 3. Ajouter une bordure au <li> qui contient "Richard"
-lis[0].style.border = "2px solid black"; // Richard est le 2e li du ul
-
-// 4. Changer la taille de police de tout le body
-document.body.style.fontSize = "18px";
-
-// ===== Exercise 5
-
-// je récupère le div
 const div = document.getElementById("container");
 console.log(div);
 
-// je récupère tous les ul
-const uls = document.querySelectorAll("ul");
+const lists = document.querySelectorAll(".list");
 
-// je change Pete par Richard
-uls[0].children[1].textContent = "Richard";
+lists[0].children[1].textContent = "Richard";
+lists[1].children[1].remove();
 
-// je supprime le 2eme li du 2eme ul
-uls[1].children[1].remove();
-
-// je change le premier li de chaque ul par mon nom
-for (let i = 0; i < uls.length; i++) {
-  uls[i].children[0].textContent = "Ima";
+for (let list of lists) {
+    list.children[0].textContent = "Ima";
 }
 
-// j'ajoute la class student_list aux deux ul
-for (let i = 0; i < uls.length; i++) {
-  uls[i].classList.add("student_list");
-}
+lists.forEach(list => list.classList.add("student_list"));
+lists[0].classList.add("university", "attendance");
 
-// j'ajoute university et attendance au premier ul
-uls[0].classList.add("university", "attendance");
-
-// je change le style du div
 div.style.backgroundColor = "lightblue";
-div.style.padding = "20px";
+div.style.padding = "10px";
 
-// je cache le li qui contient Dan
-const lis = document.querySelectorAll("li");
-for (let i = 0; i < lis.length; i++) {
-  if (lis[i].textContent === "Dan") {
-    lis[i].style.display = "none";
-  }
-}
+lists[1].lastElementChild.style.display = "none";
+lists[0].children[1].style.border = "1px solid black";
 
-// j'ajoute une bordure au li Richard
-for (let i = 0; i < lis.length; i++) {
-  if (lis[i].textContent === "Richard") {
-    lis[i].style.border = "2px solid black";
-  }
-}
-
-// je change la taille du texte du body
 document.body.style.fontSize = "18px";
 
-// BONUS : si le div est bleu clair j'affiche un message
 if (div.style.backgroundColor === "lightblue") {
-  const user1 = uls[0].children[0].textContent;
-  const user2 = uls[1].children[0].textContent;
-  alert("Hello " + user1 + " and " + user2);
+    alert("Hello Ima and Richard");
 }
 
-// ===== Exercise 6
-// je récupère le div
-const div = document.getElementById("navBar");
+//exercice 6 
 
-// je change l'id du div
-div.setAttribute("id", "socialNetworkNavigation");
+const nav = document.getElementById("navBar");
+nav.setAttribute("id", "socialNetworkNavigation");
 
-// je récupère le ul
-const ul = div.firstElementChild;
+const ul = nav.firstElementChild;
 
-// je crée un li
 const li = document.createElement("li");
-
-// je crée le texte Logout
 const text = document.createTextNode("Logout");
-
-// j'ajoute le texte au li
 li.appendChild(text);
-
-// j'ajoute le li au ul
 ul.appendChild(li);
 
-// je récupère le premier li
-const first = ul.firstElementChild;
+console.log(ul.firstElementChild.textContent);
+console.log(ul.lastElementChild.textContent);
 
-// je récupère le dernier li
-const last = ul.lastElementChild;
+//exercice 7 
 
-// j'affiche le texte du premier lien
-console.log(first.textContent);
-
-// j'affiche le texte du dernier lien
-console.log(last.textContent);
-
-
-//exerice 7 
-
-// je crée le tableau des livres
 const allBooks = [
-  {
-    title: "Harry Potter",
-    author: "J.K Rowling",
-    image: "https://covers.openlibrary.org/b/id/7984916-L.jpg",
-    alreadyRead: true
-  },
-  {
-    title: "The Alchemist",
-    author: "Paulo Coelho",
-    image: "https://covers.openlibrary.org/b/id/8231856-L.jpg",
-    alreadyRead: false
-  }
+    {
+        title: "Harry Potter",
+        author: "J.K. Rowling",
+        image: "https://covers.openlibrary.org/b/id/7984916-L.jpg",
+        alreadyRead: true
+    },
+    {
+        title: "The Hobbit",
+        author: "J.R.R. Tolkien",
+        image: "https://covers.openlibrary.org/b/id/6979861-L.jpg",
+        alreadyRead: false
+    }
 ];
 
-// je récupère la section
 const section = document.querySelector(".listBooks");
 
-// je boucle sur les livres
-for (let i = 0; i < allBooks.length; i++) {
+allBooks.forEach(book => {
+    const div = document.createElement("div");
 
-  // je crée un div pour chaque livre
-  const div = document.createElement("div");
+    const text = document.createElement("p");
+    text.textContent = `${book.title} written by ${book.author}`;
+    if (book.alreadyRead) text.style.color = "red";
 
-  // je crée le texte titre + auteur
-  const text = document.createElement("p");
-  text.textContent =
-    allBooks[i].title + " written by " + allBooks[i].author;
+    const img = document.createElement("img");
+    img.src = book.image;
+    img.style.width = "100px";
 
-  // je crée l'image
-  const img = document.createElement("img");
-  img.src = allBooks[i].image;
-  img.style.width = "100px";
-
-  // si le livre est déjà lu, le texte devient rouge
-  if (allBooks[i].alreadyRead === true) {
-    text.style.color = "red";
-  }
-
-  // j'ajoute le texte et l'image dans le div
-  div.appendChild(text);
-  div.appendChild(img);
-
-  // j'ajoute le div dans la section
-  section.appendChild(div);
-}
-
+    div.appendChild(text);
+    div.appendChild(img);
+    section.appendChild(div);
+});
 
 
 
