@@ -1,6 +1,6 @@
 
-/* 🌟 Exercise 1 */
-/*********************/
+/* Exercise 1 */
+
 
 const person = {
   name: 'John Doe',
