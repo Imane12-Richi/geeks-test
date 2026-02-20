@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTTP & JSON Exercises</title>
+</head>
+<body>
+
+  <h1>🌟 Exercise 1 – Form GET</h1>
+
+  <form method="GET" action="">
+    <label>
+      Name:
+      <input type="text" name="name">
+    </label>
+    <br><br>
+
+    <label>
+      Message:
+      <textarea name="message"></textarea>
+    </label>
+    <br><br>
+
+    <input type="submit" value="Send (GET)">
+  </form>
+
+  <p>
+    👉 When submitted with GET, the data appears in the URL as query parameters.
+  </p>
+
+  <hr>
+
+  <h1>🌟 Exercise 2 – Form POST</h1>
+
+  <form method="POST" action="">
+    <label>
+      Name:
+      <input type="text" name="name">
+    </label>
+    <br><br>
+
+    <label>
+      Message:
+      <textarea name="message"></textarea>
+    </label>
+    <br><br>
+
+    <input type="submit" value="Send (POST)">
+  </form>
+
+  <p>
+    👉 When submitted with POST, the data appears in the Network tab → Request Payload (not in the URL).
+  </p>
+
+  <hr>
+
+  <h1>🌟 Exercise 3 – JSON Mario</h1>
+
+  <script>
+    const marioGame = {
+      detail : "An amazing game!",
+      characters : {
+          mario : {
+            description:"Small and jumpy. Likes princesses.",
+            height: 10,
+            weight: 3,
+            speed: 12,
+          },
+          bowser : {
+            description: "Big and green, Hates princesses.",
+            height: 16,
+            weight: 6,
+            speed: 4,
+          },
+          princessPeach : {
+            description: "Beautiful princess.",
+            height: 12,
+            weight: 2,
+            speed: 2,
+          }
+      },
+    };
+
+    // Convert to JSON (string)
+    const jsonGame = JSON.stringify(marioGame);
+
+    // Pretty print JSON
+    const prettyJson = JSON.stringify(marioGame, null, 2);
+
+    debugger; // Add breakpoint for DevTools inspection
+
+    console.log("Original Object:", marioGame);
+    console.log("JSON String:", jsonGame);
+    console.log("Pretty JSON:", prettyJson);
+    console.log("Type of marioGame:", typeof marioGame);
+    console.log("Type of jsonGame:", typeof jsonGame);
+  </script>
+
+</body>
+</html>
