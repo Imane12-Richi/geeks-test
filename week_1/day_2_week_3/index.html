@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Giphy Random Search</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    .gif-container {
+      margin: 20px;
+    }
+    img {
+      display: block;
+      margin: 10px auto;
+    }
+    button {
+      margin: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Random GIF Generator</h1>
+
+  <form id="gif-form">
+    <input type="text" id="category" placeholder="Enter a category" required>
+    <button type="submit">Get GIF</button>
+  </form>
+
+  <button id="delete-all">DELETE ALL</button>
+
+  <div id="gifs"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
