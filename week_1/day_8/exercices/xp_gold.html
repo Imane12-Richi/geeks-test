@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 1 - HTML Form #3</title>
+</head>
+<body>
+
+    <h1>Exercise 1 : HTML Form #3</h1>
+    <h2>Instructions</h2>
+
+    <form id="myForm">
+        <label for="name">NAME:</label>
+        <input type="text" id="name" required>
+        <br><br>
+
+        <label for="lastname">LAST NAME:</label>
+        <input type="text" id="lastname" required>
+        <br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <hr>
+
+    <section id="result"></section>
+
+    <script>
+        const form = document.getElementById("myForm");
+        const section = document.getElementById("result");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault(); // prevent page reload
+
+            const name = document.getElementById("name").value;
+            const lastname = document.getElementById("lastname").value;
+
+            section.innerHTML = `
+                <h3>Sent Data:</h3>
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Last Name:</strong> ${lastname}</p>
+            `;
+        });
+    </script>
+
+</body>
+</html>

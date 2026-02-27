@@ -62,7 +62,6 @@ app.post('/api/guess', (req, res) => {
 // Serve HTML directly from JS
 app.get('/', (req, res) => {
     res.send(`
-
         
 <!DOCTYPE html>
 <html lang="en">
