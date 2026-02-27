@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Truthy Function</title>
+</head>
+<body>
+
+<h2>Check if All Parameters Are Truthy</h2>
+<p>Open the console to see the results.</p>
+
+<script>
+  // Function using array method (.every) and conditionals
+  function allTruthy(...args) {
+    return args.every(value => value);
+  }
+
+  // Examples
+  console.log(allTruthy(true, true, true)); 
+  // ➞ true
+
+  console.log(allTruthy(true, false, true)); 
+  // ➞ false
+
+  console.log(allTruthy(5, 4, 3, 2, 1, 0)); 
+  // ➞ false
+</script>
+
+</body>
+</html>
