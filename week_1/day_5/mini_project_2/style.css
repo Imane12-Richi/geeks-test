@@ -1,0 +1,30 @@
+body {
+  text-align: center;
+  font-family: Arial;
+}
+
+#colors {
+  display: grid;
+  grid-template-columns: repeat(6, 40px);
+  gap: 5px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.color {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+#board {
+  display: grid;
+  grid-template-columns: repeat(20, 25px);
+  justify-content: center;
+}
+
+.square {
+  width: 25px;
+  height: 25px;
+  border: 1px solid #ddd;
+}
